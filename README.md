@@ -50,7 +50,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ### 3. Pull Required Models
 ```bash
 # Pull Llama 2
-ollama pull llama2
+ollama pull llama3.2
 
 # Pull MXBai Embedding Model
 ollama pull mxbai-embed-large
@@ -60,8 +60,8 @@ ollama pull mxbai-embed-large
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/logicore.git
-cd logicore
+git clone https://github.com/RiyanBhargava/LogiCore-Submission
+cd LogiCore-Submission
 ```
 
 2. Create and activate a virtual environment:
@@ -171,36 +171,9 @@ logicore/
 └── README.md                   # This file
 ```
 
-## Dependencies
-
-Key packages used:
-- Flask==2.0.1
-- pandas==1.3.0
-- numpy==1.21.0
-- folium==0.12.1
-- pytest==6.2.5
-
-Full list available in `requirements.txt`
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Acknowledgments
 
-- OpenAI for LLM support
 - Ollama for local model hosting
 - Folium for map integration
 - All contributors and supporters
-
-## Support
-
-For support, email support@logicore.com or open an issue in the repository. 
