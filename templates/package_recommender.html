@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package Recommender - LogiCore</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background-color: #1e3c72;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 25px;
+        }
+        .btn-primary:hover {
+            background-color: #2a5298;
+        }
+        .result-card {
+            display: none;
+        }
+        .loading {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4">Package Recommender</h1>
+            <p class="lead">Get AI-powered packaging recommendations for your products</p>
+        </div>
+
+        <div class="card p-4 mb-4">
+            <h3 class="text-center mb-4">Test Package Recommendation</h3>
+            <div class="text-center">
+                <button id="testPackageBtn" class="btn btn-primary">
+                    Get Recommendation for Current Order
+                </button>
+            </div>
+        </div>
+
+        <div class="loading text-center mb-4">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-2">Analyzing product details...</p>
+        </div>
+
+        <div class="card p-4 result-card">
+            <h3 class="mb-3">Recommendation</h3>
+            <div id="recommendationResult"></div>
+        </div>
+    </div>
+
+    <script>
+        // Handle test package button click
+        document.getElementById('testPackageBtn').addEventListener('click', async () => {
+            // Show loading
+            document.querySelector('.loading').style.display = 'block';
+            document.querySelector('.result-card').style.display = 'none';
+            
+            try {
+                const response = await fetch('/api/predict_test_package', {
+                    method: 'GET'
+                });
+
+                const data = await response.json();
+                
+                // Hide loading
+                document.querySelector('.loading').style.display = 'none';
+                
+                // Show result
+                document.querySelector('.result-card').style.display = 'block';
+                
+                if (data.error) {
+                    document.getElementById('recommendationResult').innerHTML = `Error: ${data.error}`;
+                } else {
+                    document.getElementById('recommendationResult').innerHTML = data.result.replace(/\n/g, '<br>');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.querySelector('.loading').style.display = 'none';
+                document.querySelector('.result-card').style.display = 'block';
+                document.getElementById('recommendationResult').innerHTML = 'Error getting recommendation. Please try again.';
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

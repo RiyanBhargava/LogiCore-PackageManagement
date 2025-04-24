@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogiCore - Smart Packaging Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 4rem 0;
+            margin-bottom: 2rem;
+        }
+        .feature-card {
+            transition: transform 0.3s ease;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #1e3c72;
+        }
+        .btn-feature {
+            background-color: #1e3c72;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        .btn-feature:hover {
+            background-color: #2a5298;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 mb-4">Welcome to LogiCore</h1>
+            <p class="lead">Smart Packaging Solutions for Modern Logistics</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row g-4">
+            <!-- Package Recommender -->
+            <div class="col-md-4">
+                <div class="card feature-card h-100 text-center p-4">
+                    <i class="fas fa-box-open feature-icon"></i>
+                    <h3>Package Recommender</h3>
+                    <p>Get AI-powered packaging recommendations based on product characteristics</p>
+                    <a href="/package_recommender" class="btn btn-feature">Get Started</a>
+                </div>
+            </div>
+
+            <!-- Package Supply -->
+            <div class="col-md-4">
+                <div class="card feature-card h-100 text-center p-4">
+                    <i class="fas fa-warehouse feature-icon"></i>
+                    <h3>Package Supply</h3>
+                    <p>Generate and manage packaging inventory based on weather conditions</p>
+                    <a href="/package_supply" class="btn btn-feature">Manage Inventory</a>
+                </div>
+            </div>
+
+            <!-- Redistribution Centers -->
+            <div class="col-md-4">
+                <div class="card feature-card h-100 text-center p-4">
+                    <i class="fas fa-map-marker-alt feature-icon"></i>
+                    <h3>Redistribution Centers</h3>
+                    <p>Find the nearest center to return packaging materials and earn rewards</p>
+                    <a href="/redistribution_centers" class="btn btn-feature">Find Center</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 
