@@ -60,7 +60,7 @@ ollama pull mxbai-embed-large
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/RiyanBhargava/LogiCore-Submission
+git clone https://github.com/RiyanBhargava/LogiCore-PackageManagement
 cd LogiCore-Submission
 ```
 
