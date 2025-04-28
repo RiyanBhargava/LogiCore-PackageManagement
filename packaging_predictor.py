@@ -16,7 +16,26 @@ class PackagingPredictor:
         # Vector store path
         self.vector_store_path = "vector_store"
         
-        # Load the vector store if it exists
+        # Create prompt template
+        self.prompt_template = PromptTemplate(
+            input_variables=["context", "question"],
+            template="""
+            Based on the following product information and similar products from our database, 
+            determine the most appropriate packaging material and explain why.
+            
+            Context:
+            {context}
+            
+            Question:
+            {question}
+            
+            Please provide:
+            1. The recommended packaging material
+            2. A detailed explanation of why this packaging material is suitable
+            """
+        )
+        
+        # Load or create vector store
         if os.path.exists(self.vector_store_path):
             print("Loading existing vector store...")
             try:
@@ -25,36 +44,30 @@ class PackagingPredictor:
                     self.embeddings,
                     allow_dangerous_deserialization=True
                 )
-                # Create prompt template
-                self.prompt_template = PromptTemplate(
-                    input_variables=["context", "question"],
-                    template="""
-                    Based on the following product information and similar products from our database, 
-                    determine the most appropriate packaging material and explain why.
-                    
-                    Context:
-                    {context}
-                    
-                    Question:
-                    {question}
-                    
-                    Please provide:
-                    1. The recommended packaging material
-                    2. A detailed explanation of why this packaging material is suitable
-                    """
-                )
-                
-                # Create retrieval chain
-                self.qa_chain = RetrievalQA.from_chain_type(
-                    llm=self.llm,
-                    chain_type="stuff",
-                    retriever=self.vector_store.as_retriever(),
-                    return_source_documents=True,
-                    chain_type_kwargs={"prompt": self.prompt_template}
-                )
             except Exception as e:
                 print(f"Error loading vector store: {e}")
-                raise Exception("Failed to load vector store. Please ensure the vector store files exist in the correct location.")
+                self._create_vector_store()
+        else:
+            print("Creating new vector store...")
+            self._create_vector_store()
+            
+        # Create retrieval chain
+        self.qa_chain = RetrievalQA.from_chain_type(
+            llm=self.llm,
+            chain_type="stuff",
+            retriever=self.vector_store.as_retriever(),
+            return_source_documents=True,
+            chain_type_kwargs={"prompt": self.prompt_template}
+        )
+
+    def _create_vector_store(self):
+        # Load training data
+        df = pd.read_csv("Product_Dataset.csv")
+        # Prepare training contexts
+        contexts = self.prepare_training_data(df)
+        # Create and save vector store
+        self.vector_store = FAISS.from_texts(contexts, self.embeddings)
+        self.vector_store.save_local(self.vector_store_path)
 
     def prepare_training_data(self, df):
         # Create context strings for each product
@@ -111,4 +124,4 @@ def main():
     print(result['result'])
 
 if __name__ == "__main__":
-    main() 
+    main()
