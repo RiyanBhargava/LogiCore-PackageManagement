@@ -124,8 +124,8 @@ class WeatherBasedPackaging:
         return parsed_data
 
     def send_email(self, packaging_list):
-        EMAIL_ADDRESS = "f20230254@dubai.bits-pilani.ac.in"
-        EMAIL_PASSWORD = "zxje eoqp rnxa vrxu"  
+        EMAIL_ADDRESS = "YOUR-MAIL"
+        EMAIL_PASSWORD = "PASSWORD"  
 
         msg = EmailMessage()
         msg['Subject'] = 'Required Packaging Materials for the next quarter'

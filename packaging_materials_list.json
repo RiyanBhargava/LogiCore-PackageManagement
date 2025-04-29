@@ -3,15 +3,18 @@
         "material": "Waterproof Bubble Wrap"
     },
     {
-        "material": "Insulated Boxes with Thermal Insulation"
+        "material": "Insulated Boxes"
     },
     {
         "material": "Moisture Absorbent Packets"
     },
     {
-        "material": "UV-Resistant Plastic Bags"
+        "material": "UV-Resistant Packaging Tape"
     },
     {
-        "material": "Waterproof Tape"
+        "material": "Heat-Sealed Packaging Bags"
+    },
+    {
+        "material": "Desiccant Bags"
     }
 ]
