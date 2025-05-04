@@ -130,7 +130,7 @@ class WeatherBasedPackaging:
         msg = EmailMessage()
         msg['Subject'] = 'Required Packaging Materials for the next quarter'
         msg['From'] = EMAIL_ADDRESS
-        msg['To'] = 'f20230115@dubai.bits-pilani.ac.in'
+        msg['To'] = EMAIL_ADDRESS_TO
         msg.set_content('Please find attached the required list of packaging materials for the next quarter.')
 
         # Save packaging list to JSON
